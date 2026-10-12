@@ -1,4 +1,4 @@
-# Laboratorio 5: GitOps con GitHub, Terraform y Azure
+# Laboratorio 6: GitOps con GitHub, Terraform y Azure
 
 Repositorio plantilla del laboratorio (PEMU 2026, Escuela Colombiana de
 Ingeniería Julio Garavito). Siga la guía del laboratorio; no suba secretos.
