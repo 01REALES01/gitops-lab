@@ -2,4 +2,10 @@ framework:
   - terraform
 compact: true
 quiet: true
-skip-check: []
+skip-check:
+  - CKV_AZURE_59    # Un sitio estático debe ser accesible desde Internet; denegar la red pública lo deja inalcanzable. Solo $web es público (allow_nested_items_to_be_public = false).
+  - CKV2_AZURE_33   # Un endpoint privado solo da acceso desde una VNet: contradice un sitio público y suma costo de endpoint y DNS privado.
+  - CKV2_AZURE_1    # El contenido es un HTML público sin datos sensibles; el cifrado AES-256 con claves de Microsoft basta. Una CMK exige Key Vault y rotación.
+  - CKV_AZURE_206   # LRS basta: Git es la fuente de verdad y un apply reconstruye el sitio. GRS duplicaría el costo sin mejorar la recuperación.
+  - CKV_AZURE_33    # La cuenta no usa el servicio de colas; registrar su actividad solo genera costo y ruido, sin valor de auditoría.
+  - CKV2_AZURE_40   # Terraform sube index.html a $web con la clave de cuenta (Contributor permite listKeys); quitarla exige storage_use_azuread y otro rol (Pregunta 5).
